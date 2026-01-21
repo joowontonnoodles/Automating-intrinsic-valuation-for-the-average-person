@@ -353,27 +353,11 @@ def calculate_automatic_valuation(ticker_symbol):
       else:
           mult_current = 0.90
    
-      # Growth Rate YoY
-      growth = ((financials.loc['Total Revenue'].iloc[0] - financials.loc['Total Revenue'].iloc[1]) /
-                financials.loc['Total Revenue'].iloc[1]) * 100
-      if growth > 30:
-          mult_growth = 1.10
-      elif growth > 20:
-          mult_growth = 1.05
-      elif growth > 10:
-          mult_growth = 1.02
-      elif growth > 5:
-          mult_growth = 1.00
-      elif growth > 0:
-          mult_growth = 0.97
-      else:
-          mult_growth = 0.90
-   
       # ============================================================================
       # STEP 10 - COMPOSITE MULTIPLIER & FINAL VALUATION
       # ============================================================================
    
-      composite = (mult_ebitda + mult_de + mult_capex + mult_roe + mult_current + mult_growth) / 6
+      composite = (mult_ebitda + mult_de + mult_capex + mult_roe + mult_current ) / 6
       adjusted_value = intrinsic_value * composite
    
       # Current price for comparison
@@ -434,8 +418,6 @@ def calculate_automatic_valuation(ticker_symbol):
           'mult_roe': mult_roe,
           'current_ratio': current_ratio,
           'mult_current': mult_current,
-          'growth_yoy': growth,
-          'mult_growth': mult_growth,
           'composite_multiplier': composite,
        
           # Final value
@@ -749,6 +731,8 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           flexible_callout("""
               What is the terminal value in intrinsic valuation
               What does it mean?
+                           explain the assumptions used
+                           What multiples were used whata the perpetual growth rate
               """,
               background_color="#000000",    # Dark navy blue
               font_color="#FFFFFF",          # Light yellow/gold
@@ -796,14 +780,11 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.write("**Capital Allocation:**")
               st.write(f"• CapEx Ratio: {r['capex_ratio']:.2f} → {r['mult_capex']:.2f}x")
        
-          with col2:
-              st.write("**Growth:**")
-              st.write(f"• Revenue Growth YoY: {r['growth_yoy']:.2f}% → {r['mult_growth']:.2f}x")
           flexible_callout("""
+                           explain why these multipliers exist and what they do, and how they make my product unique
               Profitability & Efficiency: Ebitda margin and ROE. These are...
               Capital Allocation: Capex. This is...
               Leverage & Liquidity: D/E ratio and current ratio. These are...
-              Growth: Revenue Growth YoY. This is...
               """,
               background_color="#000000",    # Dark navy blue
               font_color="#FFFFFF",          # Light yellow/gold
