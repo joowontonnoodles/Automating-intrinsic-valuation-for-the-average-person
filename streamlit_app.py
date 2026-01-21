@@ -555,7 +555,7 @@ def calculate_manual_valuation(ticker_symbol, short_term_growth, perpetual_growt
         st.error(f"Error in manual calculation: {str(e)}")
         return None
 
-st.title("Automating intrinsic valuation for the common man")
+st.title("Automating intrinsic valuation for the average person")
 
 ticker_input = st.text_input("Enter Ticker Symbol (e.g., NVDA, MSFT, AAPL)").upper()
 
