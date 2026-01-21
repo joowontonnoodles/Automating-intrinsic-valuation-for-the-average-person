@@ -430,7 +430,7 @@ def calculate_automatic_valuation(ticker_symbol):
 def calculate_manual_valuation(ticker_symbol, short_term_growth, perpetual_growth, beta_multiplier, risk_free_rate, cf1_growth, cf2_growth, cf3_growth, cf4_growth, cf5_growth, cf6_growth, cf7_growth, cf8_growth, cf9_growth, cf10_growth, multiplier):
     try:
         stock = yf.Ticker(ticker_symbol)
-        shares_outstanding = stock.info.get("sharesOutstanding")
+        shares_outstanding = stock.info.get("sha    resOutstanding")
         ar = calculate_automatic_valuation(ticker_input)
         info = stock.info 
         # Manual inputs converted to decimal
@@ -781,7 +781,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.write(f"• CapEx Ratio: {r['capex_ratio']:.2f} → {r['mult_capex']:.2f}x")
        
           flexible_callout("""
-                           explain why these multipliers exist and what they do, and how they make my product unique
+              explain why these multipliers exist and what they do, and how they make my product unique
               Profitability & Efficiency: Ebitda margin and ROE. These are...
               Capital Allocation: Capex. This is...
               Leverage & Liquidity: D/E ratio and current ratio. These are...
