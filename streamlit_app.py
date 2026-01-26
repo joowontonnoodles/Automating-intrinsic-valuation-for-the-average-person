@@ -595,25 +595,26 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   st.info(f"✓ DDM Applied (${r['ddm_per_share']:.2f}/share)")
               else:
                   st.info("✗ DDM Not Applicable")
-          flexible_callout("""
-              Intrinsic value is what a company is truly worth based on its fundamentals and future cash generation, not what the market 
-              currently prices it at (Interactive Brokers, 2023). For value investors, this metric reveals whether a stock is trading cheap or 
-              expensive relative to its actual economic value.
+          with st.expander ("Explanation for Intrinsic Valuation"):
+              flexible_callout("""
+                  Intrinsic value is what a company is truly worth based on its fundamentals and future cash generation, not what the market 
+                  currently prices it at (Interactive Brokers, 2023). For value investors, this metric reveals whether a stock is trading cheap or 
+                  expensive relative to its actual economic value.
+
+                  You use it by comparing the value to the market price; If the intrinsic value is higher than the current price, the stock selected
+                  is undervalued and is on a “discount”. If it's lower, the stock is overvalued and worth avoiding. This gap is your margin of 
+                  safety, the discount at which you buy to protect against mistakes and unexpected events 
               
-              You use it by comparing the value to the market price; If the intrinsic value is higher than the current price, the stock selected
-               is undervalued and is on a “discount”. If it's lower, the stock is overvalued and worth avoiding. This gap is your margin of 
-              safety, the discount at which you buy to protect against mistakes and unexpected events 
+                  Intrinsic value is an art that relies on assumptions about the future, it cannot be accurate. If the predicted growth rate is overly
+                  optimistic, or if discount rates are incorrectly judged, or if there are any significant events that occur to the company, the 
+                  value would be incorrect. This product wouldn’t work well for early stage startup companies, and highly volatile businesses.
               
-              Intrinsic value is an art that relies on assumptions about the future, it cannot be accurate. If the predicted growth rate is overly
-              optimistic, or if discount rates are incorrectly judged, or if there are any significant events that occur to the company, the 
-              value would be incorrect. This product wouldn’t work well for early stage startup companies, and highly volatile businesses.
-              
-              The approach used by this model combines the discounted cash flow model with the dividend discount model (only if the 
-              DDM is applicable), and multiplies this by a multiplier based on the company’s financials. Instead of just projecting and 
-              discounting the cash flows, it also factors in the following factors: EBITDA margin, ROE, CapEx ratio, D/E ratio, and Current 
-              ratio, which will be explained in the future. The growth rate predictions are also a gradually fading rate, which accounts for 
-              various factors, and the beta for the discount rate is based off of the market cap of the company instead of the volatility 
-              based on the index in order to allow valuations of 
+                  The approach used by this model combines the discounted cash flow model with the dividend discount model (only if the 
+                  DDM is applicable), and multiplies this by a multiplier based on the company’s financials. Instead of just projecting and 
+                  discounting the cash flows, it also factors in the following factors: EBITDA margin, ROE, CapEx ratio, D/E ratio, and Current 
+                  ratio, which will be explained in the future. The growth rate predictions are also a gradually fading rate, which accounts for 
+                  various factors, and the beta for the discount rate is based off of the market cap of the company instead of the volatility 
+                  based on the index in order to allow valuations of 
 
               """,
               background_color="#000000",    
@@ -634,28 +635,29 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Analyst Consensus Growth (0y+1y avg)", f"{r['rev_growth_analyst']:.2f}%")
           with col3:
               st.metric("Expected Growth Rate (combined)", f"{r['expected_growth_rate']:.2f}%")
-          flexible_callout("""
-              The growth rate is the estimate of how much a company’s revenue/cash flow will increase/decrease each year. Growth rate is 
-              the first assumption that needs to be made for intrinsic valuation, and is one of the main factors that will affect the fair value of
-              a company. DCF valuation is based on the predicted future cash flows, which are then discounted; the growth rate is what is 
-              used to predict the future cash flows. 
+          with st.expander ("Explanation for the growth rate"):
+              flexible_callout("""
+                  The growth rate is the estimate of how much a company’s revenue/cash flow will increase/decrease each year. Growth rate is 
+                  the first assumption that needs to be made for intrinsic valuation, and is one of the main factors that will affect the fair value of
+                  a company. DCF valuation is based on the predicted future cash flows, which are then discounted; the growth rate is what is 
+                  used to predict the future cash flows. 
 
-              Here, the growth rate for the first 3 cash flows is calculated with an average of the analyst assumptions (from the yfinance 
-              package) and the historical growth of the company. The growth rate then eventually fades to the perpetual growth rate 
-              expected of the company throughout its life. 
+                  Here, the growth rate for the first 3 cash flows is calculated with an average of the analyst assumptions (from the yfinance 
+                  package) and the historical growth of the company. The growth rate then eventually fades to the perpetual growth rate 
+                  expected of the company throughout its life. 
 
-              The fade approach accounts for the fact that the high revenue growth will not be consistent throughout the whole life of the
-              company. The predicted growth rate gradually “fades” to the perpetual growth rate between the 4th to 10th years of predicted 
-              cashflow in this model. 
+                  The fade approach accounts for the fact that the high revenue growth will not be consistent throughout the whole life of the
+                  company. The predicted growth rate gradually “fades” to the perpetual growth rate between the 4th to 10th years of predicted 
+                  cashflow in this model. 
 
-              """,
-              background_color="#000000",    
-              font_color="#FFFFFF",         
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
-          )
+                    """,
+                  background_color="#000000",    
+                  font_color="#FFFFFF",         
+                  font_size=16,
+                  alignment="left",
+                  line_height=1.7,
+                  padding=20,
+                  )
        
           # DISCOUNT RATE (CAPM)
           st.divider()
@@ -668,7 +670,8 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Market Cap Based Beta", f"{r['beta']:.2f}")
           with col3:
               st.metric("Discount Rate (r)", f"{r['discount_rate']:.2f}%")
-          flexible_callout("""
+          with st.expander ("Explanation for the discount rate"):
+            flexible_callout("""
               
               The discount rate is the second critical assumption in valuation, right after growth rate. The discount rate answers the 
               question of how much the same dollar is worth in the future, it takes into account both inflation and the risk of the investment 
@@ -693,8 +696,8 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               alignment="left",
               line_height=1.7,
               padding=20,
-          )
-          st.caption("Formula: r = (Rf + β(Rm - Rf))")
+            )
+            st.caption("Formula: r = (Rf + β(Rm - Rf))")
        
        #CASH FLOW PROJECTIONS
           st.divider()
@@ -717,7 +720,8 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           ]
           })
           st.table(cf_table)
-          flexible_callout("""
+          with st.expander ("Explanation for the Cash flow predictions"):
+            flexible_callout("""
               The above table shows the cash flows that were predicted based on the growth rate explained before. Here, the growth rate 
               for the first 3 cash flows is calculated with an average of the analyst assumptions (from the yfinance package) and the 
               historical growth of the company. The growth rate then eventually fades to the perpetual growth rate expected of the company 
@@ -744,7 +748,8 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Multiple-Based TV (PV)", f"${r['pv_tv_multiple']:,.0f}")
           with col3:
               st.metric("Hybrid Average TV (PV)", f"${r['pv_tv_final']:,.0f}")
-          flexible_callout("""
+          with st.expander ("Explanation for the growth rate"):
+            flexible_callout("""
               Terminal value is the estimated value of a business's future cash flows beyond the 10 year predictions in the valuation, 
               representing most of the company's total worth. Two terminal value calculations were used and combined in this model: the 
               Gordon Growth Model and the Exit Multiple method. 
@@ -798,12 +803,31 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           with col1:
               st.write("**Capital Allocation:**")
               st.write(f"• CapEx Ratio: {r['capex_ratio']:.2f} → {r['mult_capex']:.2f}x")
-       
-          flexible_callout("""
-              explain why these multipliers exist and what they do, and how they make my product unique
-              Profitability & Efficiency: Ebitda margin and ROE. These are...
-              Capital Allocation: Capex. This is...
-              Leverage & Liquidity: D/E ratio and current ratio. These are...
+          with st.expander ("Explanation for the growth rate"):
+            flexible_callout("""
+              The following are various metrics that have been found using the yfinance package, and they are all converted into a 
+              multiplier that is then combined into a final multiplier that is combined with the intrinsic value to get the final value. 
+
+              Profitability (EBITDA Margin, ROE): The profitability of a company is a huge factor regarding the fair value of a company, 
+              obviously a company with a higher profit margin would be worth more than a company with a lower margin. The two metrics 
+              used to account for this is EBITDA margin and ROE:
+
+              EBITDA margin measures operating profitability as a percentage of revenue by showing earnings before interest, taxes, 
+              depreciation, and amortization. Higher margins show stronger operational efficiency and better cost control, leading to higher 
+              stock valuations.
+
+              ROE measures how the profit a company generates from shareholders by dividing income by shareholder equity. Higher 
+              ROE increases stock value because it shows the efficient use of investments for returns.  (Preferred CFO, 2026).
+
+              Capex Ratio: It compares capital expenditures to operating cash flow, showing whether a company generates enough cash to 
+              fund investments. A ratio above 1 boosts valuation by showing self funded expansion without borrowing money.
+
+              DE ratio: It divides total liabilities by shareholder equity, measuring how much debt finances operations relative to ownership. 
+              Lower ratios increase stock value by showing less financial risk. (Preferred CFO, 2026).
+
+              Current Ratio: The current ratio divides assets by liabilities, showing if a company can pay off short term debts. Ratios 
+              between 1.5 and 3.0 show healthy liquidity and financial stability (Preferred CFO, 2026).
+                           
               """,
               background_color="#000000",    # Dark navy blue
               font_color="#FFFFFF",          # Light yellow/gold
@@ -833,6 +857,20 @@ with st.expander("Python code behind the whole program", expanded=False):
             
     """)
 # ADVANCED SECTION DISPLAYS HERE - OUTSIDE BUTTON
+with st.expander("Reference list", expanded=False):
+    st.write ("""
+References
+
+Interactive Brokers. (2023). What is the intrinsic value of a stock? Retrieved from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
+
+Investopedia. (n.d.). Terminal value. Retrieved from https://www.investopedia.com/terms/t/terminalvalue.asp
+
+Preferred CFO. (2026). Leveraging financial ratios to assess company performance. Retrieved from https://preferredcfo.com/insights/leveraging-financial-ratios-to-assess-company-performance
+
+Valore Associati. (2024). Discount rates in appraisal work: The CAPM. Retrieved from https://www.valoreassociati.it/eng/articles.asp?id=14&nome=discount-rates-in-appraisal-work-the-capm
+
+Wall Street Prep. (2025). Capital asset pricing model (CAPM): Formula and calculator. Retrieved from https://www.wallstreetprep.com/knowledge/capm-capital-asset-pricing-model/
+    """)
 if st.session_state.auto_result is not None:
     ar = st.session_state.auto_result
     
@@ -1051,5 +1089,6 @@ if st.session_state.auto_result is not None:
             st.error("Error calculating manual valuation. Please try again.")
                            
 st.divider()
+
 
 
