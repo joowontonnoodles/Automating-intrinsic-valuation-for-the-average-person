@@ -12,6 +12,12 @@ import numpy as np
 from datetime import datetime
 import warnings
 from st_flexible_callout_elements import flexible_callout
+import streamlit as st
+
+st.set_page_config(page_title="Your App", layout="wide")
+
+# Rest of your code here
+st.title("My App")
 
 if 'auto_result' not in st.session_state:
     st.session_state.auto_result = None
