@@ -1,4 +1,5 @@
 [theme]
+[theme]\nbase = "dark"
 base = "dark"
 primaryColor = "#FF4B4B"
 backgroundColor = "#0E1117"
