@@ -26,9 +26,11 @@ if 'manual_done' not in st.session_state:
     st.session_state.manual_done = False
 
 st.markdown("""
-<style>
-  * {color: #c6c5b9 !important;}
-</style>
+    <style>
+    .stForm {
+        background-color: #000000;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 st.image("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", width=3200)
