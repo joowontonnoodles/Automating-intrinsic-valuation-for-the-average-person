@@ -17,7 +17,7 @@ import streamlit as st
 st.set_page_config(page_title="IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark", layout="wide")
 
 # Rest of your code here
-st.title("My App")
+st.title("IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark")
 
 if 'auto_result' not in st.session_state:
     st.session_state.auto_result = None
