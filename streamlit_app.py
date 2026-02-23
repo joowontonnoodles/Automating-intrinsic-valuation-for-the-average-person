@@ -5,6 +5,7 @@
 #create teh UI, two buttons, one for manual one for automatic
 #ticker_symbol is equal to the input box for ticker symbol
 
+
 import streamlit as st
 import yfinance as yf
 import pandas as pd
@@ -15,8 +16,6 @@ from st_flexible_callout_elements import flexible_callout
 import streamlit as st
 
 st.set_page_config(page_title="IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark", layout="wide")
-
-# Rest of your code here
 st.title("IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark")
 
 if 'auto_result' not in st.session_state:
