@@ -518,7 +518,11 @@ st.title("Automating intrinsic valuation for the average person")
 st.markdown("""
 <div style='
   padding: 20px;
-  font-size: 21px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.7;
+  border: 1px solid #ccc;
 '>
 The product that I created is a python program that calculates the intrinsic valuation of a 
 company based on its financials, using the packages (pips) of streamlit and yfinance to get 
