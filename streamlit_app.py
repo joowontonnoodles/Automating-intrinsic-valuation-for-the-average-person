@@ -33,8 +33,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.image("https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", width=3200)
-
 st.set_page_config(page_title="Intrinsic Valuation Calculator", layout="wide")
 
 def calculate_automatic_valuation(ticker_symbol):
@@ -522,8 +520,6 @@ st.title("Automating intrinsic valuation for the average person")
 
 st.markdown("""
 <div style='
-  background-color: #000000;
-  color: #FFFFFF;
   padding: 20px;
   font-size: 21px;
 '>
@@ -549,11 +545,8 @@ ticker_input = st.text_input("Enter Ticker Symbol (e.g., NVDA, MSFT, AAPL)").upp
 
 st.markdown("""
 <div style='
-  background-color: #000000;
-  color: #FFFFFF;
   padding: 20px;
   border-radius: 10px;
-  border-left: 5px solid #FFFFFF;
   margin-bottom: 20px;
   font-size: 15px;
   line-height: 1.7;
