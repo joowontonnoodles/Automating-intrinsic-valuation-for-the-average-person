@@ -1122,7 +1122,8 @@ if st.session_state.auto_result is not None:
                 st.metric("Recommended Adj. Multiplier", f"{ar['composite_multiplier']:.2f}x")
         else:
             st.error("Error calculating manual valuation. Please try again.")
-                           
+
+
 st.divider()
 
 
