@@ -16,9 +16,6 @@ import warnings
 from st_flexible_callout_elements import flexible_callout
 import streamlit as st
 
-st.set_page_config(page_title="IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark", layout="wide")
-st.title("IF THE BACKGROUND IS WHITE CLICK THE 3 DOTS ON THE TOP RIGHT OF THE SCREEN --> Settings --> Dark")
-
 if 'auto_result' not in st.session_state:
     st.session_state.auto_result = None
 
@@ -543,44 +540,6 @@ How to use this model :
 
 ticker_input = st.text_input("Enter Ticker Symbol (e.g., NVDA, MSFT, AAPL)").upper()
 
-st.markdown("""
-<div style='
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 15px;
-  line-height: 1.7;
-'>
-
-This model is not perfect, ALWAYS do your research before investing. DO NOT rely on this model for investments
-This model will not be accurate for foreign stocks. Do not use this tool for 
-What is a ticker symbol?
-
-A ticker symbol is the code that is used to identify a stock or company that is available on the stock exchange. It can easily be found by just searching up *Company Name* ticker symbol.            
-
-What is this tool and what is it used for?
-
-This is a calculator that automatically calculates the intrinsic value of a stock based on the user's input, helping the user with value investment.
-
-But what even is intrinsic valuation?
-
-Intrinsic valuation is the calculation of the 'fair' value of a company based on the fundamentals of the company (base information about the company available on financial statements.)
-It is the cornerstone of value investing, which is the method of investing that focuses on cheap-undervalued stocks to buy, betting that the market will eventually realize the true value.
-It is used by some of the most famous and successful investors of all time, including: Benjamin Graham, Warren Buffett, and Charlie Munger.
-
-DCF vs DDM Valuation
-
-Discounted cash flow (DCF) valuation projects the future cash flows an asset (company, project, property, etc.) is expected to produce and then converts those
-future amounts into a single present value using a discount rate. On the other hand, the second most commonly used valuation model is DDM valuation. The Dividend Discount Model (DDM)
-says the intrinsic value of a stock equals the present value of all future dividends the shareholder will receive. The two methods of valuation contrast, and the most commonly used
-method is the DCF valuation model. The reason why this is the case is because DDM valuation is mostly only used for large blue chip companies that have a large & consistent dividend
-, with minimal growth; it relies on dividend throughout the years, and does not account for growth at all. This means that DDM is only suitable for certain companies.
-For most firms that reinvest their capital and do not pay dividends, DCF models are more commonly used.
-       
-This model combines DCF (cash flow projections), DDM (dividends when applicable), and 6 financial metric based multipliers to create a weighted-final-intrinsic value.
-      
-</div>
-""", unsafe_allow_html=True)
 
 if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate but faster) Detailed explanations and guides", use_container_width=True):
   if ticker_input:
@@ -869,6 +828,46 @@ if st.button("ADVANCED: Calculate manual intrinsic valuation (slower, accuracy b
             st.session_state.auto_result = calculate_automatic_valuation(ticker_input)
     else:
         st.error("Please enter a ticker symbol!")
+
+st.markdown("""
+<div style='
+ padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border: 1px solid #ccc;
+'>
+
+This model is not perfect, ALWAYS do your research before investing. DO NOT rely on this model for investments
+This model will not be accurate for foreign stocks. Do not use this tool for 
+What is a ticker symbol?
+
+A ticker symbol is the code that is used to identify a stock or company that is available on the stock exchange. It can easily be found by just searching up *Company Name* ticker symbol.            
+
+What is this tool and what is it used for?
+
+This is a calculator that automatically calculates the intrinsic value of a stock based on the user's input, helping the user with value investment.
+
+But what even is intrinsic valuation?
+
+Intrinsic valuation is the calculation of the 'fair' value of a company based on the fundamentals of the company (base information about the company available on financial statements.)
+It is the cornerstone of value investing, which is the method of investing that focuses on cheap-undervalued stocks to buy, betting that the market will eventually realize the true value.
+It is used by some of the most famous and successful investors of all time, including: Benjamin Graham, Warren Buffett, and Charlie Munger.
+
+DCF vs DDM Valuation
+
+Discounted cash flow (DCF) valuation projects the future cash flows an asset (company, project, property, etc.) is expected to produce and then converts those
+future amounts into a single present value using a discount rate. On the other hand, the second most commonly used valuation model is DDM valuation. The Dividend Discount Model (DDM)
+says the intrinsic value of a stock equals the present value of all future dividends the shareholder will receive. The two methods of valuation contrast, and the most commonly used
+method is the DCF valuation model. The reason why this is the case is because DDM valuation is mostly only used for large blue chip companies that have a large & consistent dividend
+, with minimal growth; it relies on dividend throughout the years, and does not account for growth at all. This means that DDM is only suitable for certain companies.
+For most firms that reinvest their capital and do not pay dividends, DCF models are more commonly used.
+       
+This model combines DCF (cash flow projections), DDM (dividends when applicable), and 6 financial metric based multipliers to create a weighted-final-intrinsic value.
+      
+</div>
+""", unsafe_allow_html=True)
 
 with st.expander("Full APA Reference list as of 01/26/2026", expanded=False):
     st.write ("""
