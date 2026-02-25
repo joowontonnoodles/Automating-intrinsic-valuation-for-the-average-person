@@ -539,6 +539,7 @@ How to use this model :
 6. You can see the python code behind the whole program: the entire website is fully coded using python code, and hosted by the streamlit package. Do this by clicking on the “Python code …” box
 7. You can see the full APA reference list for the written explanations by clicking on the “Reference List” box.
 
+If it comes up with an error, some data from the package used (yfinance) is likely missing, leading to an incorrect calculation
 </div>
 """, unsafe_allow_html=True)    
 
