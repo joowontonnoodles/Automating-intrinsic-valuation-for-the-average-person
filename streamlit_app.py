@@ -606,9 +606,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   various factors, and the beta for the discount rate is based off of the market cap of the company instead of the volatility 
                   based on the index in order to allow valuations of 
 
-              """,
-              background_color="#000000",    
-              font_color="#FFFFFF",         
+              """,       
               font_size=16,
               alignment="left",
               line_height=1.7,
@@ -641,8 +639,6 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   cashflow in this model. 
 
                     """,
-                  background_color="#000000",    
-                  font_color="#FFFFFF",         
                   font_size=16,
                   alignment="left",
                   line_height=1.7,
@@ -679,9 +675,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               more diverse range of stocks: mega caps → 1.05, big cap →1.2, mid cap →1.3, small cap → 1.35, micro cap → 1.45. The 
               equity risk premium is 3.5%
 
-              """,
-              background_color="#000000",    #
-              font_color="#FFFFFF",          
+              """,       
               font_size=16,
               alignment="left",
               line_height=1.7,
@@ -717,9 +711,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               historical growth of the company. The growth rate then eventually fades to the perpetual growth rate expected of the company 
               throughout its life. These are the predicted cash flows that are discounted in the final DCF calculation, it is the crucial 
               application of the growth rate. 
-              """,
-              background_color="#000000",    
-              font_color="#FFFFFF",          
+              """,         
               font_size=16,
               alignment="left",
               line_height=1.7,
@@ -751,9 +743,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               The Exit Multiple method is the following formula: TV = Final Year EBITDA * Exit Multiple, where the exit multiple is 10.0.           
               PV_TV_multiple = TV_multiple / ((1 + r) ** number_of_years_TV) * Tv_multiple_extra_multiple
 
-              """,
-              background_color="#000000",    
-              font_color="#FFFFFF",          
+              """,       
               font_size=16,
               alignment="left",
               line_height=1.7,
@@ -819,8 +809,6 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               between 1.5 and 3.0 show healthy liquidity and financial stability (Preferred CFO, 2026).
                            
               """,
-              background_color="#000000",    # Dark navy blue
-              font_color="#FFFFFF",          # Light yellow/gold
               font_size=16,
               alignment="left",
               line_height=1.7,
@@ -876,6 +864,7 @@ This model combines DCF (cash flow projections), DDM (dividends when applicable)
 
 with st.expander("Full APA Reference list as of 01/26/2026", expanded=False):
     st.write ("""
+    
 References (not all were used in text)
 
 Interactive Brokers. (2023). What is the intrinsic value of a stock? Retrieved from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
