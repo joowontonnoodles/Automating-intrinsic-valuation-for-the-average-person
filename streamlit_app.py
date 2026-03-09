@@ -407,7 +407,7 @@ def calculate_manual_valuation(ticker_symbol, short_term_growth, perpetual_growt
     try:
         stock = yf.Ticker(ticker_symbol)
         shares_outstanding = stock.info.get("sharesOutstanding")
-        ar = calculate_automatic_valuation(ticker_input)
+        ar = calculate_automatic_valuation(ticker_symbol)
         info = stock.info 
         # Manual inputs converted to decimal
         g = short_term_growth / 100
