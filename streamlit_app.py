@@ -824,78 +824,6 @@ if st.button("ADVANCED: Calculate manual intrinsic valuation (slower, accuracy b
             st.session_state.auto_result = calculate_automatic_valuation(ticker_input)
     else:
         st.error("Please enter a ticker symbol!")
-
-st.markdown("""
-<div style='
- padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-size: 15px;
-  line-height: 1.7;
-  border: 1px solid #ccc;
-'>
-
-This model is not perfect, ALWAYS do your research before investing. DO NOT rely on this model for investments
-This model will not be accurate for foreign stocks. Do not use this tool for 
-What is a ticker symbol?
-
-A ticker symbol is the code that is used to identify a stock or company that is available on the stock exchange. It can easily be found by just searching up *Company Name* ticker symbol.            
-
-What is this tool and what is it used for?
-
-This is a calculator that automatically calculates the intrinsic value of a stock based on the user's input, helping the user with value investment.
-
-But what even is intrinsic valuation?
-
-Intrinsic valuation is the calculation of the 'fair' value of a company based on the fundamentals of the company (base information about the company available on financial statements.)
-It is the cornerstone of value investing, which is the method of investing that focuses on cheap-undervalued stocks to buy, betting that the market will eventually realize the true value.
-It is used by some of the most famous and successful investors of all time, including: Benjamin Graham, Warren Buffett, and Charlie Munger.
-
-DCF vs DDM Valuation
-
-Discounted cash flow (DCF) valuation projects the future cash flows an asset (company, project, property, etc.) is expected to produce and then converts those
-future amounts into a single present value using a discount rate. On the other hand, the second most commonly used valuation model is DDM valuation. The Dividend Discount Model (DDM)
-says the intrinsic value of a stock equals the present value of all future dividends the shareholder will receive. The two methods of valuation contrast, and the most commonly used
-method is the DCF valuation model. The reason why this is the case is because DDM valuation is mostly only used for large blue chip companies that have a large & consistent dividend
-, with minimal growth; it relies on dividend throughout the years, and does not account for growth at all. This means that DDM is only suitable for certain companies.
-For most firms that reinvest their capital and do not pay dividends, DCF models are more commonly used.
-       
-This model combines DCF (cash flow projections), DDM (dividends when applicable), and 6 financial metric based multipliers to create a weighted-final-intrinsic value.
-      
-</div>
-""", unsafe_allow_html=True)
-
-with st.expander("Full APA Reference list as of 01/26/2026", expanded=False):
-    st.write ("""
-    
-References (not all were used in text)
-
-Interactive Brokers. (2023). What is the intrinsic value of a stock? Retrieved from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
-
-Investopedia. (n.d.). Terminal value. Retrieved from https://www.investopedia.com/terms/t/terminalvalue.asp
-
-Preferred CFO. (2026). Leveraging financial ratios to assess company performance. Retrieved from https://preferredcfo.com/insights/leveraging-financial-ratios-to-assess-company-performance
-
-Valore Associati. (2024). Discount rates in appraisal work: The CAPM. Retrieved from https://www.valoreassociati.it/eng/articles.asp?id=14&nome=discount-rates-in-appraisal-work-the-capm
-
-Wall Street Prep. (2025). Capital asset pricing model (CAPM): Formula and calculator. Retrieved from https://www.wallstreetprep.com/knowledge/capm-capital-asset-pricing-model/
-              
-Damodaran, A. (2017). Introduction to valuation [PDF]. Stern School of Business, New York University. https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/ValIntrospr17.pdf
-
-Investopedia. (n.d.). Valuation. Retrieved January 26, 2026, from https://www.investopedia.com/terms/v/valuation.asp
-
-Rousell, R. A. (n.d.). yfinance: Ticker and Tickers reference. Retrieved January 26, 2026, from https://ranaroussi.github.io/yfinance/reference/yfinance.ticker_tickers.html
-
-Streamlit. (n.d.-a). Add statefulness to apps. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/session-state
-
-Streamlit. (n.d.-b). Basic concepts of Streamlit. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/get-started/fundamentals/main-concepts
-
-Streamlit. (n.d.-c). Create a component. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/custom-components
-
-Streamlit. (n.d.-d). Run your Streamlit app. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/run-your-app
-
-Streamlit Community. (2024). Customize status callout elements (st.error, st.success, etc.) with st.flexible_callout_elements [Discussion forum post]. Streamlit Community Forum. https://discuss.streamlit.io/t/customize-status-callout-elements-st-error-st-success-etc-with-st-flexible-callout-elements/80488
-    """)
 if st.session_state.auto_result is not None:
     ar = st.session_state.auto_result
     
@@ -1114,7 +1042,79 @@ if st.session_state.auto_result is not None:
             st.error("Error calculating manual valuation. Please try again.")
 
 
+st.markdown("""
+<div style='
+ padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.7;
+  border: 1px solid #ccc;
+'>
+
+This model is not perfect, ALWAYS do your research before investing. DO NOT rely on this model for investments
+This model will not be accurate for foreign stocks. Do not use this tool for 
+What is a ticker symbol?
+
+A ticker symbol is the code that is used to identify a stock or company that is available on the stock exchange. It can easily be found by just searching up *Company Name* ticker symbol.            
+
+What is this tool and what is it used for?
+
+This is a calculator that automatically calculates the intrinsic value of a stock based on the user's input, helping the user with value investment.
+
+But what even is intrinsic valuation?
+
+Intrinsic valuation is the calculation of the 'fair' value of a company based on the fundamentals of the company (base information about the company available on financial statements.)
+It is the cornerstone of value investing, which is the method of investing that focuses on cheap-undervalued stocks to buy, betting that the market will eventually realize the true value.
+It is used by some of the most famous and successful investors of all time, including: Benjamin Graham, Warren Buffett, and Charlie Munger.
+
+DCF vs DDM Valuation
+
+Discounted cash flow (DCF) valuation projects the future cash flows an asset (company, project, property, etc.) is expected to produce and then converts those
+future amounts into a single present value using a discount rate. On the other hand, the second most commonly used valuation model is DDM valuation. The Dividend Discount Model (DDM)
+says the intrinsic value of a stock equals the present value of all future dividends the shareholder will receive. The two methods of valuation contrast, and the most commonly used
+method is the DCF valuation model. The reason why this is the case is because DDM valuation is mostly only used for large blue chip companies that have a large & consistent dividend
+, with minimal growth; it relies on dividend throughout the years, and does not account for growth at all. This means that DDM is only suitable for certain companies.
+For most firms that reinvest their capital and do not pay dividends, DCF models are more commonly used.
+       
+This model combines DCF (cash flow projections), DDM (dividends when applicable), and 6 financial metric based multipliers to create a weighted-final-intrinsic value.
+      
+</div>
+""", unsafe_allow_html=True)
+
+with st.expander("Full APA Reference list as of 01/26/2026", expanded=False):
+    st.write ("""
+    
+References (not all were used in text)
+
+Interactive Brokers. (2023). What is the intrinsic value of a stock? Retrieved from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
+
+Investopedia. (n.d.). Terminal value. Retrieved from https://www.investopedia.com/terms/t/terminalvalue.asp
+
+Preferred CFO. (2026). Leveraging financial ratios to assess company performance. Retrieved from https://preferredcfo.com/insights/leveraging-financial-ratios-to-assess-company-performance
+
+Valore Associati. (2024). Discount rates in appraisal work: The CAPM. Retrieved from https://www.valoreassociati.it/eng/articles.asp?id=14&nome=discount-rates-in-appraisal-work-the-capm
+
+Wall Street Prep. (2025). Capital asset pricing model (CAPM): Formula and calculator. Retrieved from https://www.wallstreetprep.com/knowledge/capm-capital-asset-pricing-model/
+              
+Damodaran, A. (2017). Introduction to valuation [PDF]. Stern School of Business, New York University. https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/ValIntrospr17.pdf
+
+Investopedia. (n.d.). Valuation. Retrieved January 26, 2026, from https://www.investopedia.com/terms/v/valuation.asp
+
+Rousell, R. A. (n.d.). yfinance: Ticker and Tickers reference. Retrieved January 26, 2026, from https://ranaroussi.github.io/yfinance/reference/yfinance.ticker_tickers.html
+
+Streamlit. (n.d.-a). Add statefulness to apps. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/session-state
+
+Streamlit. (n.d.-b). Basic concepts of Streamlit. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/get-started/fundamentals/main-concepts
+
+Streamlit. (n.d.-c). Create a component. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/custom-components
+
+Streamlit. (n.d.-d). Run your Streamlit app. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/run-your-app
+
+Streamlit Community. (2024). Customize status callout elements (st.error, st.success, etc.) with st.flexible_callout_elements [Discussion forum post]. Streamlit Community Forum. https://discuss.streamlit.io/t/customize-status-callout-elements-st-error-st-success-etc-with-st-flexible-callout-elements/80488
+    """)
+
+
+
 st.divider()
-
-
 
