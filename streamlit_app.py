@@ -407,8 +407,11 @@ def calculate_manual_valuation(ticker_symbol, short_term_growth, perpetual_growt
     try:
         stock = yf.Ticker(ticker_symbol)
         shares_outstanding = stock.info.get("sharesOutstanding")
-        ar = calculate_automatic_valuation(ticker_symbol)
-        info = stock.info 
+        if not shares_outstanding:
+            st.error("Error: Could not retrieve shares outstanding.")
+            return None
+        ar = st.session_state.auto_result
+        info = stock.info
         # Manual inputs converted to decimal
         g = short_term_growth / 100
         pg = perpetual_growth / 100
