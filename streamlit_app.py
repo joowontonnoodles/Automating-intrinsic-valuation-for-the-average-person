@@ -1060,36 +1060,6 @@ if st.session_state.auto_result is not None:
                 st.metric("Manually calcualted terminal value (multiples)", f"${mr['Multiple_TV']:.2f}")
             with col6:
                 st.metric("Manually calculated terminal value", f"${mr['TV']:.2f}")
-
-              'm_dcf': m_dcf_pershare,
-            'cfg1': c1g,
-            'cfg2': c2g,
-            'cfg3': c3g,
-            'cfg4': c4g,
-            'cfg5': c5g,
-            'cfg6': c6g,
-            'cfg7': c7g,
-            'cfg8': c8g,
-            'cfg9': c9g,
-            'cfg10': c10g,
-            'multiplier': m,
-            'risk free rate': rsg,
-            'beta': bm,
-            'M_FCF_N': M_FCF_N,
-            'm_cv1' : m_cv1,
-            'm_cv2': m_cv2,
-            'm_cv3':m_cv3,
-            'm_cv4': m_cv4,
-            'm_cv5' : m_cv5,
-            'm_cv6' :m_cv6,
-            'm_cv7' : m_cv7,
-            'm_cv8' :m_cv8,
-            'm_cv9' :m_cv9,
-            'm_cv10':m_cv10,
-            'discount_rate' :r,
-            'Gordon_TV':PV_TV_gordon,
-            'Multiple_TV':PV_TV_multiple,
-            'TV': PV_TV,
             manual_cf_table = pd.DataFrame({
             'Year': ['Current (Y0)', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'],
             'Growth Rate (%)': [
