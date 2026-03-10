@@ -688,7 +688,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
        
        #CASH FLOW PROJECTIONS
           st.divider()
-          st.subheader("5-Year FCF Projections")
+          st.subheader("10 Year FCF Projections")
        
           cf_table = pd.DataFrame({
             'Year': ['Current (Y0)', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6', 'Year 7', 'Year 8', 'Year 9', 'Year 10'],
