@@ -1,6 +1,6 @@
-streamlit>=1.35.0,<1.52.0
-yfinance>=0.2.40
-pandas>=2.2.0,<3.0.0
-numpy>=1.26.0,<2.0.0
+streamlit
+yfinance
+pandas
+numpy
 st-flexible-callout-elements
-requests>=2.31.0
+requests
