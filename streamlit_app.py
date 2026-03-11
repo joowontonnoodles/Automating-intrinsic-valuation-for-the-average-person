@@ -588,7 +588,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   st.info(f"✓ DDM Applied (${r['ddm_per_share']:.2f}/share)")
               else:
                   st.info("✗ DDM Not Applicable")
-          with st.expander ("Explanation for Intrinsic Valuation"):
+          with st.expander ("Textual explanation for Intrinsic Valuation"):
               st.write ("""
                   Intrinsic value is what a company is truly worth based on its fundamentals and future cash generation, not what the market 
                   currently prices it at (Interactive Brokers, 2023). For value investors, this metric reveals whether a stock is trading cheaply or 
@@ -609,7 +609,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   various factors, and the beta for the discount rate is based on the market cap of the company instead of the volatility 
                   based on the index, to allow valuations of international companies. 
 
-                  The final calculation for DCF valuation models would be 
+                  The final calculation for DCF valuation models would be the sum of: CFN/(1+r)**N + PV_TV, where r is the discount rate, CF is the cashflow, N is year, and PV_TV is the terminal value
               """
           )
           # GROWTH ANALYSIS
@@ -623,7 +623,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Analyst Consensus Growth (0y+1y avg)", f"{r['rev_growth_analyst']:.2f}%")
           with col3:
               st.metric("Expected Growth Rate (combined)", f"{r['expected_growth_rate']:.2f}%")
-          with st.expander ("Explanation for the growth rate"):
+          with st.expander ("Textual explanation for the growth rate"):
               st.write("""
                   The growth rate is the estimate of how much a company’s revenue/cash flow will increase/decrease each year. Growth rate is 
                   the first assumption that needs to be made for intrinsic valuation, and is one of the main factors that will affect the fair value of
@@ -651,7 +651,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Market Cap Based Beta", f"{r['beta']:.2f}")
           with col3:
               st.metric("Discount Rate (r)", f"{r['discount_rate']:.2f}%")
-          with st.expander ("Explanation for the discount rate"):
+          with st.expander ("Textual explanation for the discount rate"):
             st.write("""
               
               The discount rate is the second critical assumption in valuation, right after growth rate. The discount rate answers the 
@@ -694,7 +694,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           ]
           })
           st.table(cf_table)
-          with st.expander ("Explanation for the Cash flow predictions"):
+          with st.expander ("Textual explanation for the Cash flow predictions"):
             st.write("""
               The above table shows the cash flows that were predicted based on the growth rate explained before. Here, the growth rate 
               for the first 3 cash flows is calculated with an average of the analyst assumptions (from the yfinance package) and the 
@@ -715,7 +715,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.metric("Multiple-Based TV (PV)", f"${r['pv_tv_multiple']:,.0f}")
           with col3:
               st.metric("Hybrid Average TV (PV)", f"${r['pv_tv_final']:,.0f}")
-          with st.expander ("Explanation for the growth rate"):
+          with st.expander ("Textual explanation for the terminal value"):
             st.write("""
               Terminal value is the estimated value of a business's future cash flows beyond the 10 year predictions in the valuation, 
               representing most of the company's total worth. Two terminal value calculations were used and combined in this model: the 
@@ -763,7 +763,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           with col1:
               st.write("**Capital Allocation:**")
               st.write(f"• CapEx Ratio: {r['capex_ratio']:.2f} → {r['mult_capex']:.2f}x")
-          with st.expander ("Explanation for the growth rate"):
+          with st.expander ("Textual explanation for the adjustment multiplier"):
                 st.write("""
               The following are various metrics that have been found using the yfinance package, and they are all converted into a 
               multiplier that is then combined into a final multiplier that is combined with the intrinsic value to get the final value. 
