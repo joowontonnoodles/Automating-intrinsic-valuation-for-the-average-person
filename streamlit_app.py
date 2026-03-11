@@ -589,31 +589,28 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               else:
                   st.info("✗ DDM Not Applicable")
           with st.expander ("Explanation for Intrinsic Valuation"):
-              flexible_callout("""
+              st.write ("""
                   Intrinsic value is what a company is truly worth based on its fundamentals and future cash generation, not what the market 
-                  currently prices it at (Interactive Brokers, 2023). For value investors, this metric reveals whether a stock is trading cheap or 
-                  expensive relative to its actual economic value.
+                  currently prices it at (Interactive Brokers, 2023). For value investors, this metric reveals whether a stock is trading cheaply or 
+                  expensively relative to its actual economic value.
 
                   You use it by comparing the value to the market price; If the intrinsic value is higher than the current price, the stock selected
                   is undervalued and is on a “discount”. If it's lower, the stock is overvalued and worth avoiding. This gap is your margin of 
                   safety, the discount at which you buy to protect against mistakes and unexpected events 
               
-                  Intrinsic value is an art that relies on assumptions about the future, it cannot be accurate. If the predicted growth rate is overly
-                  optimistic, or if discount rates are incorrectly judged, or if there are any significant events that occur to the company, the 
-                  value would be incorrect. This product wouldn’t work well for early stage startup companies, and highly volatile businesses.
+                  Intrinsic value is an art that relies on assumptions about the future; it cannot be accurate. If the predicted growth rate is overly
+                  optimistic, or if discount rates are incorrectly judged, or if any significant events occur to the company, the 
+                  value would be incorrect. This product wouldn’t work well for early-stage startup companies and highly volatile businesses.
               
                   The approach used by this model combines the discounted cash flow model with the dividend discount model (only if the 
-                  DDM is applicable), and multiplies this by a multiplier based on the company’s financials. Instead of just projecting and 
+                  DDM is applicable, and multiplies this by a multiplier based on the company’s financials. Instead of just projecting and 
                   discounting the cash flows, it also factors in the following factors: EBITDA margin, ROE, CapEx ratio, D/E ratio, and Current 
                   ratio, which will be explained in the future. The growth rate predictions are also a gradually fading rate, which accounts for 
-                  various factors, and the beta for the discount rate is based off of the market cap of the company instead of the volatility 
-                  based on the index in order to allow valuations of 
+                  various factors, and the beta for the discount rate is based on the market cap of the company instead of the volatility 
+                  based on the index, to allow valuations of international companies. 
 
-              """,       
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
+                  The final calculation for DCF valuation models would be 
+              """
           )
           # GROWTH ANALYSIS
           st.divider()
@@ -627,7 +624,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           with col3:
               st.metric("Expected Growth Rate (combined)", f"{r['expected_growth_rate']:.2f}%")
           with st.expander ("Explanation for the growth rate"):
-              flexible_callout("""
+              st.write("""
                   The growth rate is the estimate of how much a company’s revenue/cash flow will increase/decrease each year. Growth rate is 
                   the first assumption that needs to be made for intrinsic valuation, and is one of the main factors that will affect the fair value of
                   a company. DCF valuation is based on the predicted future cash flows, which are then discounted; the growth rate is what is 
@@ -641,12 +638,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
                   company. The predicted growth rate gradually “fades” to the perpetual growth rate between the 4th to 10th years of predicted 
                   cashflow in this model. 
 
-                    """,
-                  font_size=16,
-                  alignment="left",
-                  line_height=1.7,
-                  padding=20,
-                  )
+                    """)
        
           # DISCOUNT RATE (CAPM)
           st.divider()
@@ -660,7 +652,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           with col3:
               st.metric("Discount Rate (r)", f"{r['discount_rate']:.2f}%")
           with st.expander ("Explanation for the discount rate"):
-            flexible_callout("""
+            st.write("""
               
               The discount rate is the second critical assumption in valuation, right after growth rate. The discount rate answers the 
               question of how much the same dollar is worth in the future, it takes into account both inflation and the risk of the investment 
@@ -678,12 +670,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               more diverse range of stocks: mega caps → 1.05, big cap →1.2, mid cap →1.3, small cap → 1.35, micro cap → 1.45. The 
               equity risk premium is 3.5%
 
-              """,       
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
-            )
+              """)
             st.caption("Formula: r = (Rf + β(Rm - Rf))")
        
        #CASH FLOW PROJECTIONS
@@ -708,18 +695,13 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           })
           st.table(cf_table)
           with st.expander ("Explanation for the Cash flow predictions"):
-            flexible_callout("""
+            st.write("""
               The above table shows the cash flows that were predicted based on the growth rate explained before. Here, the growth rate 
               for the first 3 cash flows is calculated with an average of the analyst assumptions (from the yfinance package) and the 
               historical growth of the company. The growth rate then eventually fades to the perpetual growth rate expected of the company 
               throughout its life. These are the predicted cash flows that are discounted in the final DCF calculation, it is the crucial 
               application of the growth rate. 
-              """,         
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
-          )
+              """)
           
           # TERMINAL VALUE
           
@@ -734,7 +716,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
           with col3:
               st.metric("Hybrid Average TV (PV)", f"${r['pv_tv_final']:,.0f}")
           with st.expander ("Explanation for the growth rate"):
-            flexible_callout("""
+            st.write("""
               Terminal value is the estimated value of a business's future cash flows beyond the 10 year predictions in the valuation, 
               representing most of the company's total worth. Two terminal value calculations were used and combined in this model: the 
               Gordon Growth Model and the Exit Multiple method. 
@@ -746,12 +728,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               The Exit Multiple method is the following formula: TV = Final Year EBITDA * Exit Multiple, where the exit multiple is 10.0.           
               PV_TV_multiple = TV_multiple / ((1 + r) ** number_of_years_TV) * Tv_multiple_extra_multiple
 
-              """,       
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
-          )
+              """)
           st.caption("Terminal value combines Gordon Growth Model, EBITDA multiple exit, and market cap buffer")
        
           # DCF DETAILS
@@ -1082,38 +1059,24 @@ This model combines DCF (cash flow projections), DDM (dividends when applicable)
 </div>
 """, unsafe_allow_html=True)
 
-with st.expander("Full APA Reference list as of 01/26/2026", expanded=False):
+with st.expander("Full APA Reference list as of 03/12/2026", expanded=False):
     st.write ("""
     
 References (not all were used in text)
-
-Interactive Brokers. (2023). What is the intrinsic value of a stock? Retrieved from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
-
-Investopedia. (n.d.). Terminal value. Retrieved from https://www.investopedia.com/terms/t/terminalvalue.asp
-
-Preferred CFO. (2026). Leveraging financial ratios to assess company performance. Retrieved from https://preferredcfo.com/insights/leveraging-financial-ratios-to-assess-company-performance
-
-Valore Associati. (2024). Discount rates in appraisal work: The CAPM. Retrieved from https://www.valoreassociati.it/eng/articles.asp?id=14&nome=discount-rates-in-appraisal-work-the-capm
-
-Wall Street Prep. (2025). Capital asset pricing model (CAPM): Formula and calculator. Retrieved from https://www.wallstreetprep.com/knowledge/capm-capital-asset-pricing-model/
-              
-Damodaran, A. (2017). Introduction to valuation [PDF]. Stern School of Business, New York University. https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/ValIntrospr17.pdf
-
-Investopedia. (n.d.). Valuation. Retrieved January 26, 2026, from https://www.investopedia.com/terms/v/valuation.asp
-
-Rousell, R. A. (n.d.). yfinance: Ticker and Tickers reference. Retrieved January 26, 2026, from https://ranaroussi.github.io/yfinance/reference/yfinance.ticker_tickers.html
-
-Streamlit. (n.d.-a). Add statefulness to apps. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/session-state
-
-Streamlit. (n.d.-b). Basic concepts of Streamlit. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/get-started/fundamentals/main-concepts
-
-Streamlit. (n.d.-c). Create a component. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/custom-components
-
-Streamlit. (n.d.-d). Run your Streamlit app. Streamlit Documentation. Retrieved January 26, 2026, from https://docs.streamlit.io/develop/concepts/architecture/run-your-app
-
-Streamlit Community. (2024). Customize status callout elements (st.error, st.success, etc.) with st.flexible_callout_elements [Discussion forum post]. Streamlit Community Forum. https://discuss.streamlit.io/t/customize-status-callout-elements-st-error-st-success-etc-with-st-flexible-callout-elements/80488
-    """)
-
+Brackenborough, S., McLean, T., & Oldroyd, D. (2001). THE EMERGENCE OF DISCOUNTED CASH FLOW ANALYSIS IN THE TYNESIDE COAL INDUSTRY c.1700–1820. The British Accounting Review, 33(2), 137-155. https://doi.org/10.1006/bare.2001.0158
+Damodaran, A. (2017). AN INTRODUCTION TO VALUATION. Pages. Stern NYU. Retrieved March 12, 2026, from https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/ValIntrospr17.pdf
+Elmerraji, J. (2025, October 15). Essential Metrics for Value Investors: Discover Undervalued Stocks. Investopedia. Retrieved March 12, 2026, from https://www.investopedia.com/articles/fundamental-analysis/09/five-must-have-metrics-value-investors.asp
+Ganti, A. (2025, May 20). Terminal Value (TV) Definition and Formula. Investopedia. Retrieved March 12, 2026, from https://www.investopedia.com/terms/t/terminalvalue.asp
+Glover, A., Dr (Presenter). (2025, December 7). Introduction to finance & Investment Management. Lecture presented at Columbia University Pre-College Programs, .
+Interactive Brokers. (n.d.). What is the Intrinsic Value of a Stock? Interactive Brokers. Retrieved March 12, 2026, from https://www.interactivebrokers.com/campus/trading-lessons/what-is-the-intrinsic-value-of-a-stock/
+jlnetosci. (2024, September). Customize status callout elements (st.error, st.success, etc.) with st-flexible-callout-elements! [Online forum post]. Streamlit Discuss. https://discuss.streamlit.io/t/customize-status-callout-elements-st-error-st-success-etc-with-st-flexible-callout-elements/80488
+Roussi, R. (n.d.). API Reference -- Yfinance [API Reference -- Yfinance]. Github. Retrieved March 3, 2026, from https://ranaroussi.github.io/yfinance/
+Streamlit. (n.d.). Add statefulness to apps. Streamlit. Retrieved March 12, 2026, from https://docs.streamlit.io/develop/concepts/architecture/session-state
+Streamlit Inc. (n.d.). Streamlit documentation. Streamlit. Retrieved March 12, 2026, from https://docs.streamlit.io
+Vance, J. (2025, January 6). Leveraging Financial Ratios to Assess Company Performance. Preferred CEO. Retrieved March 12, 2026, from https://preferredcfo.com/insights/leveraging-financial-ratios-to-assess-company-performance
+Wall street prep. (2025, April 7). Capital Asset Pricing Model (CAPM). Wall Street Prep. Retrieved March 12, 2026, from https://www.wallstreetprep.com/knowledge/capm-capital-asset-pricing-model/
+Yahoo! Finance. (2025, September 30). Apple Inc. (AAPL). Yahoo! Finance. Retrieved March 12, 2026, from https://finance.yahoo.com/quote/AAPL/financials/
+""")
 
 
 st.divider()
