@@ -22,6 +22,8 @@ if 'auto_result' not in st.session_state:
 if 'manual_done' not in st.session_state:
     st.session_state.manual_done = False
 
+st.set_page_config(page_title="Intrinsic Valuation Calculator", layout="wide")
+
 st.markdown("""
     <style>
     .stForm {
@@ -30,7 +32,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.set_page_config(page_title="Intrinsic Valuation Calculator", layout="wide")
 
 def calculate_automatic_valuation(ticker_symbol):
   try:
