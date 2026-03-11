@@ -764,23 +764,23 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               st.write("**Capital Allocation:**")
               st.write(f"• CapEx Ratio: {r['capex_ratio']:.2f} → {r['mult_capex']:.2f}x")
           with st.expander ("Explanation for the growth rate"):
-                flexible_callout("""
+                st.write("""
               The following are various metrics that have been found using the yfinance package, and they are all converted into a 
               multiplier that is then combined into a final multiplier that is combined with the intrinsic value to get the final value. 
 
-              Profitability (EBITDA Margin, ROE): The profitability of a company is a huge factor regarding the fair value of a company, 
-              obviously a company with a higher profit margin would be worth more than a company with a lower margin. The two metrics 
-              used to account for this is EBITDA margin and ROE:
+              Profitability (EBITDA Margin, ROE): The profitability of a company is a huge factor regarding the fair value of a company; obviously,
+              a company with a higher profit margin would be worth more than a company with a lower margin. The two metrics 
+              used to account for this are EBITDA margin and ROE:
 
               EBITDA margin measures operating profitability as a percentage of revenue by showing earnings before interest, taxes, 
               depreciation, and amortization. Higher margins show stronger operational efficiency and better cost control, leading to higher 
               stock valuations.
 
-              ROE measures how the profit a company generates from shareholders by dividing income by shareholder equity. Higher 
+              ROE measures how much profit a company generates for shareholders by dividing income by shareholder equity. Higher 
               ROE increases stock value because it shows the efficient use of investments for returns.  (Preferred CFO, 2026).
 
               Capex Ratio: It compares capital expenditures to operating cash flow, showing whether a company generates enough cash to 
-              fund investments. A ratio above 1 boosts valuation by showing self funded expansion without borrowing money.
+              fund investments. A ratio above 1 boosts valuation by showing self-funded expansion without borrowing money.
 
               DE ratio: It divides total liabilities by shareholder equity, measuring how much debt finances operations relative to ownership. 
               Lower ratios increase stock value by showing less financial risk. (Preferred CFO, 2026).
@@ -788,12 +788,7 @@ if st.button("BEGINNERS: Calculate automatic intrinsic valuation (less accurate 
               Current Ratio: The current ratio divides assets by liabilities, showing if a company can pay off short term debts. Ratios 
               between 1.5 and 3.0 show healthy liquidity and financial stability (Preferred CFO, 2026).
                            
-              """,
-              font_size=16,
-              alignment="left",
-              line_height=1.7,
-              padding=20,
-          )
+              """)
           st.divider()
 if st.button("ADVANCED: Calculate manual intrinsic valuation (slower, accuracy based on user's inputs) The valuation is based on user's skill and knowledge", use_container_width=True):
     if ticker_input:
